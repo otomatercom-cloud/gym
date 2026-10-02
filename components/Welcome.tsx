@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { GYM } from '@/lib/mode';
 import { Sun, Sunrise, Sunset, Moon } from 'lucide-react';
 
 function part(h: number) {
@@ -33,8 +34,8 @@ export default function Welcome({ subtitle }: { subtitle?: string }) {
       <span className="w-orb o1" /><span className="w-orb o2" /><span className="w-orb o3" />
       <div className="w-icon"><Icon size={34} /></div>
       <div className="w-text">
-        <h2>{t}{first ? `, ${first}` : ''} <span className="wave">👋</span></h2>
-        <p>{subtitle || 'Here is what is happening in your sales & project pipeline today.'}</p>
+        <h2>{t}{first ? `, ${first}` : ''} <span className="wave">{GYM ? '💪' : '👋'}</span></h2>
+        <p>{subtitle || (GYM ? 'Here is what is happening at the gym today.' : 'Here is what is happening in your sales & project pipeline today.')}</p>
       </div>
       <div className="w-time">
         <b>{now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</b>

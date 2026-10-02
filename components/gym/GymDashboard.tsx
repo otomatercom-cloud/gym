@@ -7,6 +7,7 @@ import { money } from '@/lib/util';
 import { rpc } from '@/lib/odoo';
 import { Badge, Spinner, useToast } from '@/components/ui';
 import { Donut } from '@/components/Charts';
+import Welcome from '@/components/Welcome';
 import Avatar from './Avatar';
 import { Bars, LineChart } from './GymCharts';
 import CheckIn from './CheckIn';
@@ -41,15 +42,14 @@ export default function GymDashboard() {
   const ch = d.charts || {};
   return (
     <div className="g-dash">
-      <section className="g-hero">
-        <div><small>{d.today}</small><h1>{d.greeting}, {d.user.first_name}</h1>
-          {d.summary?.length > 0 && <p>{d.summary.map((s: any) => `${s.value} ${s.label}`).join(' · ')}</p>}</div>
-        <div className="g-quick">
-          {(d.quick_actions || []).map((q: any) => q.href === '#checkin'
+      <Welcome subtitle={d.summary?.length ? d.summary.map((x: any) => `${x.value} ${x.label}`).join(' · ') : 'Here is what is happening at the gym today.'} />
+      {d.quick_actions?.length > 0 && (
+        <div className="g-quick g-quickbar">
+          {d.quick_actions.map((q: any) => q.href === '#checkin'
             ? <button key={q.key} className="btn primary" onClick={() => setCheckin(true)}>{q.label}</button>
             : <Link key={q.key} href={q.href} className="btn ghost">{q.label}</Link>)}
         </div>
-      </section>
+      )}
 
       <div className="kpis">
         {d.kpis.map((k: any) => (

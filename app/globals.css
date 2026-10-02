@@ -374,3 +374,12 @@ kbd { font: inherit; font-size: .68rem; border: 1px solid var(--line); border-ra
 .g-hits { list-style: none; padding: 0; margin: .5rem 0 1rem; display: grid; gap: .3rem; } .g-hits li { display: flex; justify-content: space-between; align-items: center; gap: .6rem; padding: .5rem .7rem; border: 1px solid var(--line); border-radius: 10px; }
 .g-code { display: flex; gap: .6rem; align-items: flex-end; border-top: 1px solid var(--line); padding-top: .9rem; } .g-code .field { flex: 1; }
 @media (max-width: 700px) { .g-bar { grid-template-columns: 80px 1fr 56px; } .g-hero { padding: 1rem; } }
+
+/* gym greeting banner: black / charcoal / yellow, same animation as the base Welcome */
+[data-brand='gym'] .welcome { box-shadow: 0 10px 30px rgba(0,0,0,.35); color: #F5F5F0; }
+[data-brand='gym'] .welcome.morning { background-image: linear-gradient(120deg, #E5C21A, #b8960a 55%, #22211D); color: #11110F; }
+[data-brand='gym'] .welcome.afternoon { background-image: linear-gradient(120deg, #22211D, #3a3520 55%, #E5C21A); }
+[data-brand='gym'] .welcome.evening { background-image: linear-gradient(120deg, #11110F, #2a2614 55%, #b8960a); }
+[data-brand='gym'] .welcome.night { background-image: linear-gradient(120deg, #0b0b0a, #1B1A17 55%, #3a3520); }
+[data-brand='gym'] .welcome.morning .w-icon { background: rgba(17,17,15,.15); }
+.g-quickbar { margin-bottom: 1.1rem; }
