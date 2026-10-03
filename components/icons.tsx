@@ -1,4 +1,4 @@
-import { LayoutDashboard, Users, Presentation, FileText, Handshake, FileSignature, CreditCard, Percent, Wallet, FolderKanban, SquareCheckBig, ShieldCheck, Bug, Rocket, GraduationCap, Star, Kanban, Contact, Repeat, RefreshCw, Server, Plug, Dumbbell, Apple, HeartPulse, Ruler, CalendarClock, IdCard, Activity, BarChart3, UserCog, History, ClipboardList, Receipt, Salad, TrendingUp, type LucideIcon } from 'lucide-react';
+import { LayoutDashboard, Users, Presentation, FileText, Handshake, FileSignature, CreditCard, Percent, Wallet, FolderKanban, SquareCheckBig, ShieldCheck, Bug, Rocket, GraduationCap, Star, Kanban, Contact, Repeat, RefreshCw, Server, Plug, Dumbbell, Apple, HeartPulse, Ruler, CalendarClock, IdCard, Activity, BarChart3, UserCog, History, ClipboardList, Receipt, Salad, TrendingUp, Image as ImageIcon, type LucideIcon } from 'lucide-react';
 
 export const ICONS: Record<string, LucideIcon> = {
   dashboard: LayoutDashboard, leads: Users, demos: Presentation, estimates: FileText, deals: Handshake, agreements: FileSignature,

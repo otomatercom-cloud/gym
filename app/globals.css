@@ -383,3 +383,12 @@ kbd { font: inherit; font-size: .68rem; border: 1px solid var(--line); border-ra
 [data-brand='gym'] .welcome.night { background-image: linear-gradient(120deg, #0b0b0a, #1B1A17 55%, #3a3520); }
 [data-brand='gym'] .welcome.morning .w-icon { background: rgba(17,17,15,.15); }
 .g-quickbar { margin-bottom: 1.1rem; }
+
+/* front page pictures + admin */
+.login-hero { position: relative; overflow: hidden; } .login-hero > *:not(.login-slides) { position: relative; z-index: 1; }
+.login-slides { position: absolute; inset: 0; z-index: 0; } .login-slides img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s; } .login-slides img.on { opacity: .42; }
+.login-slides::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(17,17,15,.55), rgba(17,17,15,.85)); }
+.login-sub { color: #d9d8d0; margin: 0; max-width: 480px; }
+.s-logo { min-height: 90px; display: grid; place-items: center; background: #11110F; border-radius: 12px; padding: 1rem; margin-bottom: .8rem; } .s-logo img { max-height: 80px; max-width: 100%; object-fit: contain; }
+.s-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; } .s-gallery figure { margin: 0; display: grid; gap: .5rem; } .s-gallery img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); }
+.s-act { display: flex; gap: .4rem; }

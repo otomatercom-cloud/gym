@@ -1,5 +1,6 @@
 'use client';
 import { CONFIG } from './config';
+import { GYM } from './mode';
 
 let cache: Promise<Set<string>> | null = null;
 const KEY = (uid: number) => `otm.access.${uid}`;
@@ -17,7 +18,7 @@ export function loadAccess(): Promise<Set<string>> {
   if (!cache) {
     cache = fetch('/api/access', {
       method: 'POST', headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ models: CONFIG.map((c) => c.model).concat(['project.project']) }),
+      body: JSON.stringify({ models: CONFIG.map((c) => c.model).concat(['project.project']).concat(GYM ? ['otm.gym.site'] : []) }),
     }).then(async (r) => {
       if (r.status === 401) { location.href = '/login'; return new Set<string>(); }
       const j = await r.json();

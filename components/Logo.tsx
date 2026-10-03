@@ -1,20 +1,25 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import { GYM } from '@/lib/mode';
+import { logoUrl, useSite } from '@/lib/site';
 
 /** Shows /public/logo.png (your company logo). If the file is missing it falls back to the "o" mark + company name. */
 export default function Logo({ height = 34, badge = false, name, sub }: { height?: number; badge?: boolean; name?: string; sub?: string }) {
   const [missing, setMissing] = useState(false);
+  const site = useSite();
+  const src = GYM ? logoUrl(site) : '/logo.png';
   const ref = useRef<HTMLImageElement>(null);
   // the image can fail before React attaches onError (server-rendered page), so check once on mount too
   useEffect(() => { const i = ref.current; if (i && i.complete && i.naturalWidth === 0) setMissing(true); }, []);
-  if (missing) {
+  useEffect(() => { setMissing(false); }, [src]);
+  if (missing || !src) {
     return (<>
-      <span className="logo-mark" style={{ width: height, height }}>o</span>
+      <span className="logo-mark" style={{ width: height, height }}>{(name || 'o')[0]?.toUpperCase()}</span>
       {(name || sub) && <span>{name}{sub && <small>{sub}</small>}</span>}
     </>);
   }
   // eslint-disable-next-line @next/next/no-img-element
-  const img = <img ref={ref} src="/logo.png" alt="Company logo" height={height} style={{ height, width: 'auto', maxWidth: 190, display: 'block', objectFit: 'contain' }} onError={() => setMissing(true)} />;
+  const img = <img ref={ref} src={src} alt="Company logo" height={height} style={{ height, width: 'auto', maxWidth: 190, display: 'block', objectFit: 'contain' }} onError={() => setMissing(true)} />;
   return (<>
     {badge ? <span className="logo-badge">{img}</span> : img}
     {sub && <small className="logo-sub">{sub}</small>}

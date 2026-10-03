@@ -13,7 +13,7 @@ import { cachedAccess, loadAccess, resetAccess } from '@/lib/access';
 
 const EXTRA: Record<string, { href: string; title: string; icon: string }[]> = GYM ? {
   Operations: [{ href: '/today', title: 'Live attendance', icon: 'attendance' }],
-  Setup: [{ href: '/reports', title: 'Reports', icon: 'reports' }],
+  Setup: [{ href: '/reports', title: 'Reports', icon: 'reports' }, { href: '/admin/site', title: 'Website & logo', icon: 'site' }],
 } : {
   Projects: [{ href: '/board', title: 'Project board', icon: 'board' }],
   Clients: [{ href: '/customers', title: 'Customer 360', icon: 'customers' }],
@@ -79,7 +79,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
   const on = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(href + '/'));
   const Ico = ({ k }: { k: string }) => { const I = ICONS[k]; return I ? <I size={17} strokeWidth={1.9} /> : null; };
   const current = CONFIG.find((c) => path.startsWith('/' + c.slug));
-  const crumb = path === '/' ? 'Dashboard' : path.startsWith('/board') ? 'Project board' : path.startsWith('/customers') ? 'Customer 360' : path.startsWith('/reports') ? 'Reports' : path.startsWith('/today') ? 'Live attendance' : current?.title || '';
+  const crumb = path === '/' ? 'Dashboard' : path.startsWith('/board') ? 'Project board' : path.startsWith('/customers') ? 'Customer 360' : path.startsWith('/admin/site') ? 'Website & logo' : path.startsWith('/reports') ? 'Reports' : path.startsWith('/today') ? 'Live attendance' : current?.title || '';
   const initials = user.name.split(' ').map((w) => w[0]).slice(0, 2).join('').toUpperCase();
   return (
     <div className="shell">
@@ -97,7 +97,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
             {items.map((c) => (
               <Link key={c.slug} href={`/${c.slug}`} className={on(`/${c.slug}`) ? 'on' : ''}><Ico k={c.slug} />{c.title}</Link>
             ))}
-            {(EXTRA[g] || []).filter((e) => !allowed || (e.href === '/board' ? allowed.has('project.project') : allowed.size > 0)).map((e) => <Link key={e.href} href={e.href} className={on(e.href) ? 'on' : ''}><Ico k={e.icon} />{e.title}</Link>)}
+            {(EXTRA[g] || []).filter((e) => !allowed || (e.href === '/board' ? allowed.has('project.project') : e.href === '/admin/site' ? allowed.has('otm.gym.site') : allowed.size > 0)).map((e) => <Link key={e.href} href={e.href} className={on(e.href) ? 'on' : ''}><Ico k={e.icon} />{e.title}</Link>)}
           </div>
           );
         })}
