@@ -392,3 +392,12 @@ kbd { font: inherit; font-size: .68rem; border: 1px solid var(--line); border-ra
 .s-logo { min-height: 90px; display: grid; place-items: center; background: #11110F; border-radius: 12px; padding: 1rem; margin-bottom: .8rem; } .s-logo img { max-height: 80px; max-width: 100%; object-fit: contain; }
 .s-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; } .s-gallery figure { margin: 0; display: grid; gap: .5rem; } .s-gallery img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); }
 .s-act { display: flex; gap: .4rem; }
+
+/* dropdown lists follow the theme (white list + light text was unreadable in dark mode) */
+.m2o-list { background: var(--card); color: var(--ink); border-color: var(--line); }
+.m2o-opt { color: var(--ink); } .m2o-opt.muted { color: var(--muted); }
+.m2o-opt:hover, .m2o-opt.on { background: var(--brand-soft); color: var(--brand-ink); }
+.m2o-opt.create { color: var(--brand); }
+[data-theme='dark'] select, [data-theme='dark'] select option { background: #1B1A17; color: #F5F5F0; }
+[data-theme='dark'] { color-scheme: dark; }
+.cmd, .modal { color: var(--ink); }
